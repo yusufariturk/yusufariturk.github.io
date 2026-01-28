@@ -6,433 +6,34 @@
     <title>Terms of Use — PhantomScan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: rgba(18, 18, 26, 0.8);
-            --accent: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.3);
-            --text-primary: #ffffff;
-            --text-secondary: #8a8a9a;
-            --text-muted: #5a5a6a;
-            --border: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        /* Animated Background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 212, 255, 0.12), transparent),
-                radial-gradient(ellipse 60% 40% at 0% 80%, rgba(0, 212, 255, 0.06), transparent);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: linear-gradient(to bottom, var(--bg-primary), transparent);
-            animation: fadeDown 0.8s ease-out;
-        }
-
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border: 2px solid var(--accent);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--accent);
-            animation: scanMove 2s ease-in-out infinite;
-        }
-
-        @keyframes scanMove {
-            0%, 100% { top: 20%; opacity: 1; }
-            50% { top: 80%; opacity: 0.5; }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
-        /* Main Content */
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            animation: fadeUp 0.8s ease-out;
-        }
-
-        .page-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .page-label::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .page-title {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .page-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .effective-date {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Content Blocks */
-        .content-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.6s ease-out forwards;
-        }
-
-        .content-section:nth-child(1) { animation-delay: 0.1s; }
-        .content-section:nth-child(2) { animation-delay: 0.15s; }
-        .content-section:nth-child(3) { animation-delay: 0.2s; }
-        .content-section:nth-child(4) { animation-delay: 0.25s; }
-        .content-section:nth-child(5) { animation-delay: 0.3s; }
-        .content-section:nth-child(6) { animation-delay: 0.35s; }
-        .content-section:nth-child(7) { animation-delay: 0.4s; }
-        .content-section:nth-child(8) { animation-delay: 0.45s; }
-        .content-section:nth-child(9) { animation-delay: 0.5s; }
-        .content-section:nth-child(10) { animation-delay: 0.55s; }
-
-        .section-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--accent), #00ff88);
-            color: var(--bg-primary);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 8px;
-            margin-bottom: 1.25rem;
-        }
-
-        .content-section h2 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .content-section p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .content-section p:last-child {
-            margin-bottom: 0;
-        }
-
-        .content-section ul {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .content-section li {
-            color: var(--text-secondary);
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .content-section li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 1rem;
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
-        .content-section strong {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .content-section a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .content-section a:hover {
-            opacity: 0.8;
-        }
-
-        .highlight-box {
-            background: rgba(0, 212, 255, 0.08);
-            border-left: 3px solid var(--accent);
-            padding: 1rem 1.25rem;
-            border-radius: 0 10px 10px 0;
-            margin: 1rem 0;
-        }
-
-        .highlight-box p {
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        /* Contact Card */
-        .contact-card {
-            background: linear-gradient(135deg, var(--bg-card), rgba(0, 212, 255, 0.05));
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            margin-top: 3rem;
-            animation: fadeUp 0.6s ease-out 0.7s both;
-        }
-
-        .contact-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-email {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--accent);
-            color: var(--bg-primary);
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-            transition: all 0.3s ease;
-        }
-
-        .contact-email:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border);
-            position: relative;
-            z-index: 2;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-copy {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            main {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-            .content-section {
-                padding: 1.75rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="bg-gradient"></div>
+    <div class="bg-mesh">
+        <div class="mesh-gradient mesh-1"></div>
+        <div class="mesh-gradient mesh-2"></div>
+        <div class="mesh-gradient mesh-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
 
     <nav>
-        <a href="/" class="logo">
-            <div class="logo-icon"></div>
-            PhantomScan
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="privacy.html">Privacy</a></li>
-            <li><a href="terms.html" class="active">Terms</a></li>
-            <li><a href="support.html">Support</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                    </svg>
+                </div>
+                PhantomScan
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html" class="active">Terms</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
     </nav>
 
     <main>
@@ -525,13 +126,14 @@
 
     <footer>
         <div class="footer-content">
-            <ul class="footer-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="terms.html">Terms</a></li>
-                <li><a href="support.html">Support</a></li>
-            </ul>
-            <p class="footer-copy">© 2026 PhantomScan. All rights reserved.</p>
+            <div class="footer-logo">PhantomScan</div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:support@phantomscan.app">Contact</a>
+            </div>
+            <div style="color: var(--text-muted);">© 2026 PhantomScan</div>
         </div>
     </footer>
 </body>
